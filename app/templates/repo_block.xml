@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mustache>
+  <script id="repo_block" type="text/template"><![CDATA[
+    <div>
+      <div class="col-md-4">
+        {{name}}<br />
+        <i>{{owner.login}}</i><br />
+        {{forks}}
+        {{watchers}}
+        {{open_issues}}
+        {{stargazers_count}}
+        <hr />
+      </div>
+    </div>
+  ]]></script>
+</mustache>

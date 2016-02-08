@@ -6,7 +6,8 @@
   "dependencies": {
     "mout": "^0.11.1",
     "mustache": "^2.2.1",
-    "uclass": "~2.0.6"
+    "uclass": "~2.0.6",
+    "xmldom": "^0.1.22"
   },
   "devDependencies": {
     "glob": "~4.0.5",

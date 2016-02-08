@@ -13,7 +13,10 @@ module.exports = function(grunt) {
   // default task is to init dev env
   grunt.registerTask('default', [
     'pack',
-    'concat'
+    'concat',
+    'stylus',
+    'cssmin',
+    'concat:templates'
   ]);
 
 };

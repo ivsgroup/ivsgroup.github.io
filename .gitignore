@@ -3,3 +3,4 @@ app/app.js
 app/_bootstrap.js
 theme/stylus.css
 theme/main.css
+templates.xml

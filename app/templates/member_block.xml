@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mustache>
+  <script id="member_block" type="text/template"><![CDATA[
+    <div>
+      <div class="col-md-4">
+        {{login}}<br />
+        <img src="{{avatar_url}}" width="50" />
+        <hr />
+      </div>
+    </div>
+  ]]></script>
+</mustache>

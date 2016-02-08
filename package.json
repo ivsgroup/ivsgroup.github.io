@@ -1,0 +1,38 @@
+{
+  "name": "ivsgroup.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "dependencies": {
+    "mout": "^0.11.1",
+    "mustache": "^2.2.1",
+    "uclass": "~2.0.6"
+  },
+  "devDependencies": {
+    "glob": "~4.0.5",
+    "grunt": "~0.4.5",
+    "stylus": "~0.50.0",
+    "grunt-browserify": "^4.0.1",
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-cssmin": "~0.10.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-uglify": "~0.5.1",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-stylus": "~0.21.0",
+    "grunt-http-server": "0.0.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ivsgroup/ivsgroup.github.io.git"
+  },
+  "author": "Kolosowski florent <fkolosowski@ivsweb.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivsgroup/ivsgroup.github.io/issues"
+  },
+  "homepage": "https://github.com/ivsgroup/ivsgroup.github.io"
+}

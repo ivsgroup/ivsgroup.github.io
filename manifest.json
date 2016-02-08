@@ -1,0 +1,11 @@
+{
+  "behavior" : {
+    "concat" : true,
+    "jshint" : true,
+    "jscs"  : false
+  },
+  "files" : {
+    "vendor/jquery/jquery-v1-12-0.js" : {},
+    "app/_bootstrap.js" : {}
+  }
+}

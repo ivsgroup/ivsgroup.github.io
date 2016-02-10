@@ -18,31 +18,41 @@ var GithubApi = new Class({
     var self = this;
     self.app = app;
     self.setOptions(options);
+    self.debug = self.options.debug;
   },
 
   get_repos : function(chain) {
-    var self = this;
+    var self = this,
+        url  = self.options.git_base_url + self.options.git_org + '/repos';
     
-    self.httpRequest(self.options.git_base_url + self.options.git_org + '/repos', function(err, data) {
+    self.httpRequest(url, function(err, data) {
       var repos = JSON.parse(data);
+      if (self.debug)
+        console.log(url + ' : ', repos);
       chain(repos);
     });  
   },
 
-  get_repo_graph : function(repo_name, chain) {
-    var self = this;
+  ger_org : function(chain) {
+    var self = this,
+        url  = self.options.git_base_url + self.options.git_org;
 
-    self.httpRequest('https://github.com/' + self.options.git_org + '/' + repo_name + '/graphs/participation?h=100&w=640', function(err, data) {
-      var dom = data;
-      console.log(dom);
+    self.httpRequest(url, function(err, data) {
+      var org = JSON.parse(data);
+      if (self.debug)
+        console.log(url + ' : ', org);
+      chain(org);
     });
   },
 
   get_members : function(chain) {
-    var self = this;
+    var self = this,
+        url  = self.options.git_base_url + self.options.git_org + '/public_members';
 
-    self.httpRequest(self.options.git_base_url + self.options.git_org + '/public_members', function(err, data) {
+    self.httpRequest(url, function(err, data) {
       var members = JSON.parse(data);
+      if (self.debug)
+        console.log(url + ' : ', members);
       chain(members);
     });
   },

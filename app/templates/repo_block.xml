@@ -2,14 +2,35 @@
 <mustache>
   <script id="repo_block" type="text/template"><![CDATA[
     <div>
-      <div class="col-md-4">
-        {{name}}<br />
-        <i>{{owner.login}}</i><br />
-        {{forks}}
-        {{watchers}}
-        {{open_issues}}
-        {{stargazers_count}}
-        <hr />
+      <div class="col-md-6">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <a href="javascript:void(0);" class="show_repo" rel="{{id}}">
+                {{name}}
+              </a>
+              <span class="text-right pull-right">
+                <span class="label label-primary">
+                  <span class="glyphicon glyphicon-eye-open"> </span> 
+                  {{watchers}}
+                </span>&nbsp;
+                <span class="label label-primary">
+                  <i class="fa fa-code-fork"></i>
+                  {{forks}}
+                </span>&nbsp;
+                <span class="label label-primary">
+                  <span class="glyphicon glyphicon-star"> </span> 
+                  {{stargazers_count}}
+                </span>
+              </span>
+            </h3>
+          </div>
+          <div class="panel-body">
+            {{description}}<br />
+            Created by <i>{{owner.login}}</i><br />
+            Last update : {{updated_at}}
+          </div>
+        </div>
       </div>
     </div>
   ]]></script>

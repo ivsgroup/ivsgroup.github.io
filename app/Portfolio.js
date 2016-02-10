@@ -12,6 +12,9 @@ var Portfolio = new Class({
   Binds : ['ready'],
 
   templates : {},
+
+  main  : null,
+  debug : true,
   
   //config.json
   git_org : 'ivsgroup',
@@ -35,24 +38,29 @@ var Portfolio = new Class({
     console.log('ready');
 
     var options = {
-      'git_org' : self.git_org
+      'git_org' : self.git_org,
+      'debug'   : self.debug
     };
 
     self.github = new GithubApi(self, options);
 
+    self.github.ger_org(function(org) {
+      self.main = self.render('main_block', org);
+      $(document.body).append(self.main);
+    });
+
     self.github.get_repos(function(repos) {
       repos.forEach(function(repo, key) {
-        self.github.get_repo_graph(repo.name, function() {});
+        repo.updated_at = self.format_date(repo.updated_at);
         var dom = self.render('repo_block', repo);
-        $(document.body).append(dom);
+        $('#repos').append(dom);
       });
     });
 
     self.github.get_members(function(members) {
       members.forEach(function(member, key) {
-        console.log(member);
         var dom = self.render('member_block', member);
-        $(document.body).append(dom);
+        $('#members').append(dom);
       });
     });
   },
@@ -83,11 +91,21 @@ var Portfolio = new Class({
     };
   },
 
+  format_date : function(date) {
+    var date = new Date(date),
+        date_str = date.toLocaleDateString('fr-fr', { //tmp fr-fr
+          day   : "numeric",
+          month : "long",
+          year  : "numeric"
+        });
+    return date_str;
+  },
+
   render : function(template_id, view) {
     var self = this,
         output = Mustache.render(self.templates[template_id], view, self.templates),
         res = $('<div></div>').append(output);
-    output = res[0];
+    output = res[0].innerHTML;
     return output;
   },
 
@@ -100,7 +118,7 @@ var Portfolio = new Class({
         for (var i = 0; i < node.childNodes.length; i++)
           str += serializer.serializeToString(node.childNodes[i]);
 
-        self.templates[node.getAttribute('id')] = str.replace(']]>', '');
+        self.templates[node.getAttribute('id')] = str.replace(']]>', '').replace('<![CDATA[', '');
       });
 
       self.fireEvent('init');

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mustache>
+  <script id="main_block" type="text/template"><![CDATA[
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="border-radius:0px;">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#" style="padding: 5px 10px;">
+            <img alt="Brand" src="{{avatar_url}}" width="50" height="50" style="border-radius:3px;" />
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Repositories<span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Members</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container" id="container">
+      <div id="members" class="row">
+      </div>
+      <div id="repos" class="row">
+      </div>
+    </div>
+  ]]></script>
+</mustache>

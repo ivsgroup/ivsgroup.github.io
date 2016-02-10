@@ -47,21 +47,69 @@ var Portfolio = new Class({
     self.github.ger_org(function(org) {
       self.main = self.render('main_block', org);
       $(document.body).append(self.main);
+      self.bind_nav();
     });
+  },
+
+  show_repositories : function() {
+    var self = this;
 
     self.github.get_repos(function(repos) {
+      var dom = $('<div></div>');
       repos.forEach(function(repo, key) {
         repo.updated_at = self.format_date(repo.updated_at);
-        var dom = self.render('repo_block', repo);
-        $('#repos').append(dom);
+        dom.append(self.render('repo_block', repo));
       });
+      self.switch_content('#container', dom);
     });
+  },
 
+  show_members : function() {
+    var self = this;
     self.github.get_members(function(members) {
+      var dom = $('<div></div>');
       members.forEach(function(member, key) {
-        var dom = self.render('member_block', member);
-        $('#members').append(dom);
+        dom.append(self.render('member_block', member));
       });
+      self.switch_content('#container', dom);
+    });
+  },
+
+  show_about : function() {
+
+  },
+
+  switch_content : function(container, dom) {
+    $(container).fadeOut('fast', function() {
+      $(container).empty();
+      $(container).append(dom);
+      $(container).fadeIn('fast');
+    });
+  },
+
+  bind_nav : function() {
+    var self = this;
+
+    self.show_repositories();
+
+    var elems = $('#main_nav').find('li');
+    $(elems).click(function(test, test2) {
+      if ($(this).hasClass('active'))
+        return;
+      $(elems).removeClass('active');
+      $(this).addClass('active');
+      var rub = $(this).attr('rel');
+      switch (rub) {
+        case 'repositories' :
+        self.show_repositories();
+          break;
+        case 'members' :
+          self.show_members();
+          break;
+        case 'about' :
+          self.show_about();
+          break;
+      }
     });
   },
 
@@ -93,7 +141,7 @@ var Portfolio = new Class({
 
   format_date : function(date) {
     var date = new Date(date),
-        date_str = date.toLocaleDateString('fr-fr', { //tmp fr-fr
+        date_str = date.toLocaleDateString('en-us', { //tmp en-us
           day   : "numeric",
           month : "long",
           year  : "numeric"
